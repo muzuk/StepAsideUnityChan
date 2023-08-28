@@ -70,7 +70,7 @@ public class ItemGenerator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (this.transform.position.y < unitychan.transform.position.y)
+        if (this.transform.position.z < unitychan.transform.position.z)
         {
             Destroy(this.gameObject);
         }
