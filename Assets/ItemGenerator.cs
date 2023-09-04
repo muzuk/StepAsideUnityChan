@@ -22,57 +22,62 @@ public class ItemGenerator : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //Unityちゃんのオブジェクトを取得
-        this.unitychan = GameObject.Find("unitychan");
-        //Unityちゃんとカメラの位置（z座標）の差を求める
-        this.difference = unitychan.transform.position.z - this.transform.position.z;
+    }
 
-        //一定の距離ごとにアイテムを生成
-        for (int i = startPos; i < goalPos; i += 15)
+
+    // Update is called once per frame
+    void OnTriggerEnter(Collider other)
+    {
+        // UnitychanオブジェクトのTagを識別
+        if (other.gameObject.tag == "UnitychanTag")
         {
-            //どのアイテムを出すのかをランダムに設定
-            int num = Random.Range(1, 11);
-            if (num <= 2)
+            // 接触したオブジェクトの座標を取得
+            Vector3 hitPos = other.ClosestPointOnBounds(this.transform.position);
+
+            // 取得したZ座標の80m先から、50m先までにアイテムを生成
+            for (float i = other.transform.position.z + 80f; i < other.transform.position.z + 50f; i += 130f)
             {
-                //コーンをx軸方向に一直線に生成
-                for (float j = -1; j <= 1; j += 0.4f)
+                //どのアイテムを出すのかをランダムに設定
+                int num = Random.Range(1, 11);
+                if (num <= 2)
                 {
-                    GameObject cone = Instantiate(conePrefab);
-                    cone.transform.position = new Vector3(4 * j, cone.transform.position.y, i);
-                }
-            }
-            else
-            {
-                //レーンごとにアイテムを生成
-                for (int j = -1; j <= 1; j++)
-                {
-                    //アイテムの種類を決める
-                    int item = Random.Range(1, 11);
-                    //アイテムを置くZ座標のオフセットをランダムに設定
-                    int offsetZ = Random.Range(-5, 6);
-                    //60%コイン配置:30%車配置:10%何もなし
-                    if (1 <= item && item <= 6)
+                    //コーンをx軸方向に一直線に生成
+                    for (float j = -1; j <= 1; j += 0.4f)
                     {
-                        //コインを生成
-                        GameObject coin = Instantiate(coinPrefab);
-                        coin.transform.position = new Vector3(posRange * j, coin.transform.position.y, i + offsetZ);
+                        GameObject cone = Instantiate(conePrefab);
+                        cone.transform.position = new Vector3(4 * j, cone.transform.position.y, i);
                     }
-                    else if (7 <= item && item <= 9)
+                }
+                else
+                {
+                    //レーンごとにアイテムを生成
+                    for (int j = -1; j <= 1; j++)
                     {
-                        //車を生成
-                        GameObject car = Instantiate(carPrefab);
-                        car.transform.position = new Vector3(posRange * j, car.transform.position.y, i + offsetZ);
+                        //アイテムの種類を決める
+                        int item = Random.Range(1, 11);
+                        //アイテムを置くZ座標のオフセットをランダムに設定
+                        int offsetZ = Random.Range(-5, 6);
+                        //60%コイン配置:30%車配置:10%何もなし
+                        if (1 <= item && item <= 6)
+                        {
+                            //コインを生成
+                            GameObject coin = Instantiate(coinPrefab);
+                            coin.transform.position = new Vector3(posRange * j, coin.transform.position.y, i + offsetZ);
+                        }
+                        else if (7 <= item && item <= 9)
+                        {
+                            //車を生成
+                            GameObject car = Instantiate(carPrefab);
+                            car.transform.position = new Vector3(posRange * j, car.transform.position.y, i + offsetZ);
+                        }
                     }
                 }
             }
         }
-    }
-    // Update is called once per frame
-    void Update()
-    {
-        if (this.transform.position.z < unitychan.transform.position.z)
+        // Update is called once per frame
+        void Update()
         {
-            Destroy(this.gameObject);
+
         }
     }
 }
