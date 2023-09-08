@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class LineGenerator : MonoBehaviour
 {
+
     //linePrefabを入れる
     public GameObject linePrefab;
     //スタート地点
@@ -17,7 +18,7 @@ public class LineGenerator : MonoBehaviour
     void Start()
     {
         //一定の距離ごとにLineを生成
-        for (int i = startPos; i < goalPos; i += 25)
+        for (int i = startPos -50; i < goalPos; i += 15)
         {
 
             GameObject line = Instantiate(linePrefab);
