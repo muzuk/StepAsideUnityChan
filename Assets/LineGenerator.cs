@@ -12,13 +12,13 @@ public class LineGenerator : MonoBehaviour
     //ゴール地点
     private int goalPos = 360;
     //Lineを出すx方向の範囲
-    private float posRange = 3.4f;
+    private float posRange = 0f;
 
     // Start is called before the first frame update
     void Start()
     {
         //一定の距離ごとにLineを生成
-        for (int i = startPos -50; i < goalPos; i += 15)
+        for (int i = startPos -50; i < goalPos -50 ; i += 15)
         {
 
             GameObject line = Instantiate(linePrefab);

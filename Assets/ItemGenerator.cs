@@ -48,10 +48,9 @@ public class ItemGenerator : MonoBehaviour
                     for (float j = -1; j <= 1; j += 0.4f)
                     {
                         GameObject cone = Instantiate(conePrefab);
-                    cone.transform.position = new Vector3(4 * j, cone.transform.position.y, other.transform.position.z + 15);
-                        cone.transform.position = new Vector3(4 * j, cone.transform.position.y, other.transform.position.z + 30);
-                    cone.transform.position = new Vector3(4 * j, cone.transform.position.y, other.transform.position.z + 45);
-                }
+                    cone.transform.position = new Vector3(4 * j, cone.transform.position.y, other.transform.position.z + 50);
+
+                    }
                 }
                 else
                 {
@@ -67,17 +66,14 @@ public class ItemGenerator : MonoBehaviour
                         {
                             //ƒRƒCƒ“‚ð¶¬
                             GameObject coin = Instantiate(coinPrefab);
-                            coin.transform.position = new Vector3(posRange * j, coin.transform.position.y, other.transform.position.z + offsetZ);
-                        coin.transform.position = new Vector3(posRange * j, coin.transform.position.y, other.transform.position.z + offsetZ +15);
-                        coin.transform.position = new Vector3(posRange * j, coin.transform.position.y, other.transform.position.z + offsetZ + 30);
+                            coin.transform.position = new Vector3(posRange * j, coin.transform.position.y, other.transform.position.z + 50);
                     }
                         else if (7 <= item && item <= 9)
                         {
                             //ŽÔ‚ð¶¬
                             GameObject car = Instantiate(carPrefab);
-                            car.transform.position = new Vector3(posRange * j, car.transform.position.y, other.transform.position.z + offsetZ);
-                        car.transform.position = new Vector3(posRange * j, car.transform.position.y, other.transform.position.z + offsetZ + 15);
-                        car.transform.position = new Vector3(posRange * j, car.transform.position.y, other.transform.position.z + offsetZ + 30);
+                            car.transform.position = new Vector3(posRange * j, car.transform.position.y, other.transform.position.z + 50);
+
                     }
                     }
                 }
